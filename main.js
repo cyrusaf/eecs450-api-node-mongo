@@ -10,16 +10,21 @@
 
 // Router config
 // ==========
-var express    = require('express');
-var app        = express();
-var bodyParser = require('body-parser');
-var cors       = require('cors');
+var express       = require('express');
+var app           = express();
+var bodyParser    = require('body-parser');
+var cors          = require('cors');
+GLOBAL.multiparty = require('multiparty');
+GLOBAL.fs         = require('fs'); 
 
 // For parsing post data
 app.use(bodyParser());
 
 // For allowing cross-domain access
 app.use(cors());
+
+// Create public dir
+app.use('/img', express.static(__dirname + '/img'));
 
 // Global API requires (MVC + Services)
 // ==========
