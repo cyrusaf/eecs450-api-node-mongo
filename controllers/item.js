@@ -6,7 +6,18 @@ module.exports = {
 			var itemObj  = {};
 			itemObj.name = fields.name[0];
 			itemObj.id   = fields.id[0];
-			itemObj.img  = 'http://localhost:3001/img/' + fields.id[0] + '.png';
+			itemObj.img  = 'http://10.101.22.115:3001/img/' + fields.id[0] + '.png';
+			itemObj.exts = [];
+
+			// Populate exts
+			if (fields.ext) {
+				for (var i = 0; i < fields.ext.length; i++) {
+					var exts = fields.ext[i].split(',');
+					for (var j = 0; j < exts.length; j++) {
+						itemObj.exts.push(exts[j]);
+					}
+				}
+			}
 
 			// Move file from tmp to imgs
 			var source = fs.createReadStream(files.img[0].path);
@@ -40,6 +51,7 @@ module.exports = {
 				res.status(500).json(err);
 				return
 			}
+			console.log("updated");
 			res.status(200).json(model);
 		});
 	},

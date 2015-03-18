@@ -4,7 +4,8 @@ var Schema = mongoose.Schema;
 var itemSchema = new Schema({
 	name: String,
 	id: String,
-	img: String
+	img: String,
+	exts: [String]
 }, {
 	versionKey: false
 });

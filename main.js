@@ -46,6 +46,23 @@ app.post('/items/delete', function(req, res) {
 	Controllers.item.delete(req, res);
 })
 
+app.get('/imgs', function(req, res) {
+	Models.item.find({}, function(err, models) {
+			if (err) {
+				res.status(500).json(err);
+				return
+			}
+			var imgs = models.map(function(item) {
+				return item.img
+			});
+			res.status(200).json(imgs);
+		}); 
+});
+
+app.put("/items", function(req, res) {
+	Controllers.item.update(req, res);
+});
+
 // Server
 // ==========
 var server = app.listen(3001, function() {
