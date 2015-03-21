@@ -6,7 +6,7 @@ module.exports = {
 			var itemObj  = {};
 			itemObj.name = fields.name[0];
 			itemObj.id   = fields.id[0];
-			itemObj.img  = 'http://10.101.22.115:3001/img/' + fields.id[0] + '.png';
+			itemObj.img  = '/img/' + fields.id[0] + '.png';
 			itemObj.exts = [];
 
 			// Populate exts
@@ -33,7 +33,7 @@ module.exports = {
 			source.on('error', function(err) {
 				console.log('Error copying file!');
 			});
-			res.redirect('http://localhost/eecs450');
+			res.redirect(fields.url);
 		});
 	},
 	read: function(req, res) {
